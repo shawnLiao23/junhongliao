@@ -5,38 +5,533 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Junhong Liao | Personal Website</title>
   <style>
-    :root{--ink:#1f2933;--muted:#5f6c7b;--line:#d9e2ec;--blue:#1f4e79;--soft:#f7f9fc;--accent:#b6895b}
-    *{box-sizing:border-box} body{margin:0;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:#fff;line-height:1.55}
-    a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+    :root{
+      --ink:#1f2933;
+      --muted:#5f6c7b;
+      --line:#d9e2ec;
+      --blue:#1f4e79;
+      --soft:#f7f9fc;
+      --accent:#b6895b;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:84px}
+    body{
+      margin:0;
+      font-family:Georgia,"Times New Roman",serif;
+      color:var(--ink);
+      background:#fff;
+      line-height:1.55;
+    }
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
     .page{max-width:1120px;margin:0 auto;padding:0 28px}
-    header{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:5}
-    nav{height:68px;display:flex;justify-content:space-between;align-items:center;font-family:Arial,sans-serif}
-    .brand{font-weight:700;color:var(--blue);letter-spacing:.3px}.links a{margin-left:24px;font-size:14px;color:#334e68}
-    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;padding:64px 0 50px;align-items:center}
+    header{
+      border-bottom:1px solid var(--line);
+      background:#fff;
+      position:sticky;
+      top:0;
+      z-index:5;
+    }
+    nav{
+      height:68px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-family:Arial,sans-serif;
+      gap:18px;
+    }
+    .brand{font-weight:700;color:var(--blue);letter-spacing:.3px}
+    .links{display:flex;align-items:center;gap:18px}
+    .links a{font-size:14px;color:#334e68}
+    .lang-btn{
+      border:1px solid var(--line);
+      background:#fff;
+      color:#102a43;
+      font-size:13px;
+      padding:6px 10px;
+      cursor:pointer;
+      border-radius:6px;
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:52px;
+      padding:64px 0 50px;
+      align-items:center;
+    }
     h1{font-size:56px;line-height:1.05;margin:0 0 14px;color:#102a43;font-weight:700}
     .subtitle{font-family:Arial,sans-serif;font-size:18px;color:var(--muted);margin-bottom:22px}
-    .intro{font-size:17px;max-width:680px}.meta{margin-top:24px;font-family:Arial,sans-serif;color:#334e68;font-size:14px}.meta span{display:block;margin:5px 0}
-    .photo-box{height:360px;border:1px solid var(--line);background:linear-gradient(135deg,#f5f7fa,#eef2f7);display:flex;align-items:center;justify-content:center;color:#829ab1;font-family:Arial,sans-serif;text-align:center;padding:26px}
-    .photo-box strong{color:#52606d;display:block;margin-bottom:8px}
-    section{padding:42px 0;border-top:1px solid var(--line)} h2{font-family:Arial,sans-serif;font-size:17px;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);margin:0 0 22px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}.item{margin-bottom:28px}.date{font-family:Arial,sans-serif;font-size:13px;color:var(--accent);font-weight:700;margin-bottom:4px}
-    .title{font-size:20px;font-weight:700;color:#102a43;line-height:1.25}.role{font-style:italic;color:#3e4c59;margin:3px 0 8px}
-    ul{margin:8px 0 0 20px;padding:0} li{margin:4px 0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--soft);border:1px solid var(--line);padding:20px;min-height:120px}.card h3{margin:0 0 8px;font-size:17px;color:#102a43}
-    .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 26px;font-family:Arial,sans-serif}.skill-row{border-bottom:1px solid var(--line);padding:8px 0}.skill-row strong{color:#102a43;display:inline-block;width:130px}
-    footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font-family:Arial,sans-serif;font-size:14px}
-    @media(max-width:820px){.hero,.grid,.cards,.skills{grid-template-columns:1fr}h1{font-size:42px}.links{display:none}.photo-box{height:280px}}
+    .intro{font-size:17px;max-width:680px}
+    .photo-box{
+      height:360px;
+      border:1px solid var(--line);
+      background:linear-gradient(135deg,#f5f7fa,#eef2f7);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#829ab1;
+      font-family:Arial,sans-serif;
+      text-align:center;
+      padding:20px;
+      overflow:hidden;
+    }
+    .photo-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      border-radius:4px;
+    }
+    .photo-placeholder strong{color:#52606d;display:block;margin-bottom:8px}
+    section{padding:42px 0;border-top:1px solid var(--line);scroll-margin-top:84px}
+    h2{
+      font-family:Arial,sans-serif;
+      font-size:17px;
+      letter-spacing:1.8px;
+      text-transform:uppercase;
+      color:var(--blue);
+      margin:0 0 22px;
+    }
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+    .item{margin-bottom:28px}
+    .date{
+      font-family:Arial,sans-serif;
+      font-size:13px;
+      color:var(--accent);
+      font-weight:700;
+      margin-bottom:4px;
+    }
+    .title{font-size:20px;font-weight:700;color:#102a43;line-height:1.25}
+    .role{font-style:italic;color:#3e4c59;margin:3px 0 8px}
+    ul{margin:8px 0 0 20px;padding:0}
+    li{margin:4px 0}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--soft);border:1px solid var(--line);padding:20px;min-height:120px}
+    .card h3{margin:0 0 8px;font-size:17px;color:#102a43}
+    .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 26px;font-family:Arial,sans-serif}
+    .skill-row{border-bottom:1px solid var(--line);padding:8px 0}
+    .skill-row strong{color:#102a43;display:inline-block;width:130px}
+    .contact-box{font-family:Arial,sans-serif;color:#334e68;font-size:16px}
+    .contact-box p{margin:8px 0}
+    footer{
+      border-top:1px solid var(--line);
+      padding:28px 0 48px;
+      color:var(--muted);
+      font-family:Arial,sans-serif;
+      font-size:14px;
+    }
+    @media(max-width:820px){
+      .hero,.grid,.cards,.skills{grid-template-columns:1fr}
+      h1{font-size:42px}
+      .links a{display:none}
+      .photo-box{height:280px}
+    }
   </style>
 </head>
 <body>
-<header><div class="page"><nav><div class="brand">Junhong Liao</div><div class="links"><a href="#research">Research</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#awards">Awards</a><a href="#contact">Contact</a></div></nav></div></header>
+<header>
+  <div class="page">
+    <nav>
+      <div class="brand">Junhong Liao</div>
+      <div class="links">
+        <a href="#research" data-i18n="navResearch">Research</a>
+        <a href="#projects" data-i18n="navProjects">Projects</a>
+        <a href="#experience" data-i18n="navExperience">Experience</a>
+        <a href="#awards" data-i18n="navAwards">Awards</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+        <button id="langToggle" class="lang-btn" type="button">中文</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
 <main class="page">
-<section class="hero" style="border-top:0"><div><h1>Liao Junhong</h1><div class="subtitle">BSc Information and Computer Science · Xi’an Jiaotong-Liverpool University</div><p class="intro">I am an undergraduate student interested in AI applications, mathematical modeling, and intelligent systems. My work spans AI-assisted learning tools, CAD/FEA integration through isogeometric analysis, predictive modeling, and practical deployment of LLM-based applications.</p><div class="meta" id="contact"><span>📧 Junhong.Liao23@student.xjtlu.edu.cn</span><span>📱 +86 15008295606</span></div></div><div class="photo-box"><div><strong>Personal Photo</strong>Replace this placeholder with your portrait.<br/>Recommended: vertical photo, neutral background, 4:5 ratio.</div></div></section>
-<section id="research"><h2>Research Experience</h2><div class="item"><div class="date">Nov 2024 – Sep 2025</div><div class="title">VividWrite: AI-Generated Visual Feedback for EFL Writing Enhancement</div><div class="role">Third Author · Accepted at EUROCALL 2025</div><ul><li>Developed an AI-based writing assistant integrating GPT-4o and DePlot.</li><li>Designed personalized visual feedback generation using Mermaid.js.</li><li>Conducted a pre-test/post-test experiment with 50 EFL students.</li><li>Improved writing accuracy, coherence, and vocabulary diversity.</li></ul></div><div class="item"><div class="date">Jun 2024 – Sep 2024</div><div class="title">Integration of CAD and FEA via Isogeometric Analysis</div><div class="role">Team Leader</div><ul><li>Developed NURBS-based geometric modeling for complex curves and surfaces.</li><li>Integrated CAD geometry directly into numerical analysis using IGA.</li><li>Compared IGA with classical FEA in accuracy and computational efficiency.</li></ul></div></section>
-<section id="projects"><h2>Selected Projects</h2><div class="grid"><div class="item"><div class="date">Jan 2025</div><div class="title">Prediction Model for Staircase Wear Dynamics</div><div class="role">Code Developer · MCM Honorable Mention</div><ul><li>Built a multi-factor predictive model using MATLAB and Python.</li><li>Modeled environmental effects and pedestrian flow.</li><li>Developed directional wear modeling and dynamic simulation.</li></ul></div><div class="item"><div class="date">Sep 2025 – Oct 2025</div><div class="title">Stadium Seating Optimization Model</div><div class="role">Provincial Third Prize</div><ul><li>Built a recursive C-value model based on geometric constraints.</li><li>Applied nonlinear optimization and binary search.</li><li>Achieved an optimal viewing angle of approximately 27°.</li></ul></div><div class="item"><div class="date">Sep 2024 – Dec 2024</div><div class="title">Aurora BreatheGuard</div><div class="role">IoT-Based Air Quality Monitoring System</div><ul><li>Designed real-time IoT system architecture for air quality monitoring.</li><li>Implemented visualization and intelligent alert mechanisms.</li><li>Received XJTLU Global Dream-Chasers Competition Excellence Award.</li></ul></div></div></section>
-<section id="experience"><h2>Internship Experience</h2><div class="grid"><div class="item"><div class="date">Jul 2025 – Sep 2025</div><div class="title">Suzhou Puwang Intelligent Software Co., Ltd.</div><div class="role">AI Developer Intern</div><ul><li>Worked with AI Agent architecture, Dify, Docker, DeepSeek, and Xinference.</li><li>Built a full-stack AI assistant system with frontend and backend components.</li><li>Completed end-to-end deployment and delivery.</li></ul></div><div class="item"><div class="date">Jul 2024 – Sep 2024</div><div class="title">Chengdu Weiwei Network Technology Co., Ltd.</div><div class="role">Python Developer Intern</div><ul><li>Developed an intelligent scoring system for sports competitions.</li><li>Implemented real-time score updates and data visualization.</li><li>Applied object-oriented programming and modular design.</li></ul></div></div></section>
-<section><h2>Leadership & Activities</h2><div class="grid"><div class="item"><div class="date">2024 – 2025</div><div class="title">Tennis Club, XJTLU</div><div class="role">Planning Director</div><ul><li>Organized the Campus Tennis Freshman Cup.</li><li>Led planning for the first Pickleball Tournament.</li><li>Managed event coordination, promotion, and operations.</li></ul></div><div class="item"><div class="date">2023 – Present</div><div class="title">XJTLU Tennis Team Member</div><ul><li>Champion, DKU Invitational Tournament 2024.</li><li>Competed in National University Tennis Competitions.</li></ul></div></div></section>
-<section id="awards"><h2>Awards</h2><div class="cards"><div class="card"><h3>National Encouragement Scholarship</h3><p>2025</p></div><div class="card"><h3>MCM/ICM Honorable Mention</h3><p>Top 15% globally</p></div><div class="card"><h3>XJTLU i-Star Five-Star Athlete Award</h3><p>2026</p></div><div class="card"><h3>DKU Invitational Tournament</h3><p>Champion, 2024</p></div><div class="card"><h3>Dream-Chasers Competition</h3><p>Excellence Award</p></div></div></section>
-<section><h2>Skills</h2><div class="skills"><div class="skill-row"><strong>Programming</strong>Python, Java, MATLAB</div><div class="skill-row"><strong>AI & Systems</strong>Dify, LLM Applications, Docker</div><div class="skill-row"><strong>Data Analysis</strong>NumPy, Visualization, Modeling</div><div class="skill-row"><strong>Engineering</strong>CAD, NURBS, FEA, IGA</div><div class="skill-row"><strong>Tools</strong>Microsoft Office, LaTeX</div></div></section>
-<section><h2>Publication</h2><div class="item"><div class="title">AI-generated visual feedback as a writing aid</div><p>Improving visual data description skills in EFL learners. EUROCALL 2025.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.4995/EuroCALL2025.2025.21168">10.4995/EuroCALL2025.2025.21168</a></p></div></section>
-</main><footer><div class="page">© 2026 Junhong Liao. Designed as a clean academic personal webpage.</div></footer>
-</body></html>
+  <section class="hero" style="border-top:0">
+    <div>
+      <h1>Liao Junhong</h1>
+      <div class="subtitle" data-i18n="subtitle">BSc Information and Computer Science · Xi'an Jiaotong-Liverpool University</div>
+      <p class="intro" data-i18n="intro">
+        I am an undergraduate student interested in AI applications, mathematical modeling, and intelligent systems. My work spans AI-assisted learning tools, CAD/FEA integration through isogeometric analysis, predictive modeling, and practical deployment of LLM-based applications.
+      </p>
+    </div>
+    <div class="photo-box">
+      <img src="./assets/a.JPG" alt="Junhong Liao portrait" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+      <div class="photo-placeholder" style="display:none">
+        <strong data-i18n="photoTitle">Personal Photo</strong>
+        <span data-i18n="photoHint">Place your portrait at ./assets/avatar.jpg (recommended 4:5).</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <h2 data-i18n="researchTitle">Research Experience</h2>
+    <div class="item">
+      <div class="date" data-i18n="r1Date">Nov 2024 - Sep 2025</div>
+      <div class="title" data-i18n="r1Title">VividWrite: AI-Generated Visual Feedback for EFL Writing Enhancement</div>
+      <div class="role" data-i18n="r1Role">Accepted at EUROCALL 2025</div>
+      <ul>
+        <li data-i18n="r1b1">Developed an AI-based writing assistant integrating GPT-4o and DePlot.</li>
+        <li data-i18n="r1b2">Designed personalized visual feedback generation using Mermaid.js.</li>
+        <li data-i18n="r1b3">Conducted a pre-test/post-test experiment with 50 EFL students.</li>
+        <li data-i18n="r1b4">Improved writing accuracy, coherence, and vocabulary diversity.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="date" data-i18n="r2Date">Jun 2024 - Sep 2024</div>
+      <div class="title" data-i18n="r2Title">Integration of CAD and FEA via Isogeometric Analysis</div>
+      <div class="role" data-i18n="r2Role">Team Leader · Excellent Poster in Research Fellowship</div>
+      <ul>
+        <li data-i18n="r2b1">Developed NURBS-based geometric modeling for complex curves and surfaces.</li>
+        <li data-i18n="r2b2">Integrated CAD geometry directly into numerical analysis using IGA.</li>
+        <li data-i18n="r2b3">Compared IGA with classical FEA in accuracy and computational efficiency.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 data-i18n="projectsTitle">Selected Projects</h2>
+    <div class="grid">
+      <div class="item">
+        <div class="date" data-i18n="p1Date">Jan 2025</div>
+        <div class="title" data-i18n="p1Title">Prediction Model for Staircase Wear Dynamics</div>
+        <div class="role" data-i18n="p1Role">Code Developer · MCM Honorable Mention</div>
+        <ul>
+          <li data-i18n="p1b1">Built a multi-factor predictive model using MATLAB and Python.</li>
+          <li data-i18n="p1b2">Modeled environmental effects and pedestrian flow.</li>
+          <li data-i18n="p1b3">Developed directional wear modeling and dynamic simulation.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="date" data-i18n="p2Date">Sep 2025 - Oct 2025</div>
+        <div class="title" data-i18n="p2Title">Stadium Seating Optimization Model</div>
+        <div class="role" data-i18n="p2Role">Provincial Third Prize</div>
+        <ul>
+          <li data-i18n="p2b1">Built a recursive C-value model based on geometric constraints.</li>
+          <li data-i18n="p2b2">Applied nonlinear optimization and binary search.</li>
+          <li data-i18n="p2b3">Achieved an optimal viewing angle of approximately 27°.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="date" data-i18n="p3Date">Sep 2024 - Dec 2024</div>
+        <div class="title" data-i18n="p3Title">Aurora BreatheGuard</div>
+        <div class="role" data-i18n="p3Role">IoT-Based Air Quality Monitoring System</div>
+        <ul>
+          <li data-i18n="p3b1">Designed real-time IoT system architecture for air quality monitoring.</li>
+          <li data-i18n="p3b2">Implemented visualization and intelligent alert mechanisms.</li>
+          <li data-i18n="p3b3">Received XJTLU Global Dream-Chasers Competition Excellence Award.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2 data-i18n="expTitle">Internship Experience</h2>
+    <div class="grid">
+      <div class="item">
+        <div class="date" data-i18n="e1Date">Jul 2025 - Sep 2025</div>
+        <div class="title" data-i18n="e1Title">Suzhou Puwang Intelligent Software Co., Ltd.</div>
+        <div class="role" data-i18n="e1Role">AI Developer Intern</div>
+        <ul>
+          <li data-i18n="e1b1">Worked with AI Agent architecture, Dify, Docker, DeepSeek, and Xinference.</li>
+          <li data-i18n="e1b2">Built a full-stack AI assistant system with frontend and backend components.</li>
+          <li data-i18n="e1b3">Completed end-to-end deployment and delivery.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="date" data-i18n="e2Date">Jul 2024 - Sep 2024</div>
+        <div class="title" data-i18n="e2Title">Chengdu Weiwei Network Technology Co., Ltd.</div>
+        <div class="role" data-i18n="e2Role">Python Developer Intern</div>
+        <ul>
+          <li data-i18n="e2b1">Developed an intelligent scoring system for sports competitions.</li>
+          <li data-i18n="e2b2">Implemented real-time score updates and data visualization.</li>
+          <li data-i18n="e2b3">Applied object-oriented programming and modular design.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="leadTitle">Leadership & Activities</h2>
+    <div class="grid">
+      <div class="item">
+        <div class="date" data-i18n="l1Date">2024 - 2025</div>
+        <div class="title" data-i18n="l1Title">Tennis Club, XJTLU</div>
+        <div class="role" data-i18n="l1Role">Planning Director</div>
+        <ul>
+          <li data-i18n="l1b1">Organized the Campus Tennis Freshman Cup.</li>
+          <li data-i18n="l1b2">Led planning for the first Pickleball Tournament.</li>
+          <li data-i18n="l1b3">Managed event coordination, promotion, and operations.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="date" data-i18n="l2Date">2023 - Present</div>
+        <div class="title" data-i18n="l2Title">XJTLU Tennis Team Member</div>
+        <ul>
+          <li data-i18n="l2b1">Champion, DKU Invitational Tournament 2024.</li>
+          <li data-i18n="l2b2">Competed in National University Tennis Competitions.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="awards">
+    <h2 data-i18n="awardsTitle">Awards</h2>
+    <div class="cards">
+      <div class="card"><h3 data-i18n="a1Title">National Encouragement Scholarship</h3><p data-i18n="a1Desc">2025</p></div>
+      <div class="card"><h3 data-i18n="a2Title">MCM/ICM Honorable Mention</h3><p data-i18n="a2Desc">Top 15% globally</p></div>
+      <div class="card"><h3 data-i18n="a3Title">XJTLU i-Star Five-Star Athlete Award</h3><p data-i18n="a3Desc">2026</p></div>
+      <div class="card"><h3 data-i18n="a4Title">DKU Invitational Tournament</h3><p data-i18n="a4Desc">Champion, 2024</p></div>
+      <div class="card"><h3 data-i18n="a5Title">Dream-Chasers Competition</h3><p data-i18n="a5Desc">Excellence Award</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="skillsTitle">Skills</h2>
+    <div class="skills">
+      <div class="skill-row"><strong data-i18n="s1k">Programming</strong> <span data-i18n="s1v">Python, Java, MATLAB</span></div>
+      <div class="skill-row"><strong data-i18n="s2k">AI & Systems</strong> <span data-i18n="s2v">Dify, LLM Applications, Docker</span></div>
+      <div class="skill-row"><strong data-i18n="s3k">Data Analysis</strong> <span data-i18n="s3v">NumPy, Visualization, Modeling</span></div>
+      <div class="skill-row"><strong data-i18n="s4k">Engineering</strong> <span data-i18n="s4v">CAD, NURBS, FEA, IGA</span></div>
+      <div class="skill-row"><strong data-i18n="s5k">Tools</strong> <span data-i18n="s5v">Microsoft Office, LaTeX</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="pubTitle">Publication</h2>
+    <div class="item">
+      <div class="title" data-i18n="pub1Title">AI-generated visual feedback as a writing aid</div>
+      <p data-i18n="pub1Desc">Improving visual data description skills in EFL learners. EUROCALL 2025.</p>
+      <p><strong>DOI:</strong> <a href="https://doi.org/10.4995/EuroCALL2025.2025.21168">10.4995/EuroCALL2025.2025.21168</a></p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 data-i18n="contactTitle">Contact</h2>
+    <div class="contact-box">
+      <p><strong>Email:</strong> <a href="mailto:Junhong.Liao23@student.xjtlu.edu.cn">Junhong.Liao23@student.xjtlu.edu.cn</a></p>
+      <p><strong data-i18n="phoneLabel">Phone:</strong> <a href="tel:+8615008295606">+86 15008295606</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="page" data-i18n="footer">© 2026 Junhong Liao. Designed as a clean academic personal webpage.</div>
+</footer>
+
+<script>
+  const translations = {
+    en: {
+      navResearch: "Research",
+      navProjects: "Projects",
+      navExperience: "Experience",
+      navAwards: "Awards",
+      navContact: "Contact",
+      subtitle: "BSc Information and Computer Science · Xi'an Jiaotong-Liverpool University",
+      intro: "I am an undergraduate student interested in AI applications, mathematical modeling, and intelligent systems. My work spans AI-assisted learning tools, CAD/FEA integration through isogeometric analysis, predictive modeling, and practical deployment of LLM-based applications.",
+      photoTitle: "Personal Photo",
+      photoHint: "Place your portrait at ./assets/avatar.jpg (recommended 4:5).",
+      researchTitle: "Research Experience",
+      r1Date: "Nov 2024 - Sep 2025",
+      r1Title: "VividWrite: AI-Generated Visual Feedback for EFL Writing Enhancement",
+      r1Role: "Accepted at EUROCALL 2025",
+      r1b1: "Developed an AI-based writing assistant integrating GPT-4o and DePlot.",
+      r1b2: "Designed personalized visual feedback generation using Mermaid.js.",
+      r1b3: "Conducted a pre-test/post-test experiment with 50 EFL students.",
+      r1b4: "Improved writing accuracy, coherence, and vocabulary diversity.",
+      r2Date: "Jun 2024 - Sep 2024",
+      r2Title: "Integration of CAD and FEA via Isogeometric Analysis",
+      r2Role: "Team Leader · Excellent Poster in Research Fellowship",
+      r2b1: "Developed NURBS-based geometric modeling for complex curves and surfaces.",
+      r2b2: "Integrated CAD geometry directly into numerical analysis using IGA.",
+      r2b3: "Compared IGA with classical FEA in accuracy and computational efficiency.",
+      projectsTitle: "Selected Projects",
+      p1Date: "Jan 2025",
+      p1Title: "Prediction Model for Staircase Wear Dynamics",
+      p1Role: "Code Developer · MCM Honorable Mention",
+      p1b1: "Built a multi-factor predictive model using MATLAB and Python.",
+      p1b2: "Modeled environmental effects and pedestrian flow.",
+      p1b3: "Developed directional wear modeling and dynamic simulation.",
+      p2Date: "Sep 2025 - Oct 2025",
+      p2Title: "Stadium Seating Optimization Model",
+      p2Role: "Provincial Third Prize",
+      p2b1: "Built a recursive C-value model based on geometric constraints.",
+      p2b2: "Applied nonlinear optimization and binary search.",
+      p2b3: "Achieved an optimal viewing angle of approximately 27°.",
+      p3Date: "Sep 2024 - Dec 2024",
+      p3Title: "Aurora BreatheGuard",
+      p3Role: "IoT-Based Air Quality Monitoring System",
+      p3b1: "Designed real-time IoT system architecture for air quality monitoring.",
+      p3b2: "Implemented visualization and intelligent alert mechanisms.",
+      p3b3: "Received XJTLU Global Dream-Chasers Competition Excellence Award.",
+      expTitle: "Internship Experience",
+      e1Date: "Jul 2025 - Sep 2025",
+      e1Title: "Suzhou Puwang Intelligent Software Co., Ltd.",
+      e1Role: "AI Developer Intern",
+      e1b1: "Worked with AI Agent architecture, Dify, Docker, DeepSeek, and Xinference.",
+      e1b2: "Built a full-stack AI assistant system with frontend and backend components.",
+      e1b3: "Completed end-to-end deployment and delivery.",
+      e2Date: "Jul 2024 - Sep 2024",
+      e2Title: "Chengdu Weiwei Network Technology Co., Ltd.",
+      e2Role: "Python Developer Intern",
+      e2b1: "Developed an intelligent scoring system for sports competitions.",
+      e2b2: "Implemented real-time score updates and data visualization.",
+      e2b3: "Applied object-oriented programming and modular design.",
+      leadTitle: "Leadership & Activities",
+      l1Date: "2024 - 2025",
+      l1Title: "Tennis Club, XJTLU",
+      l1Role: "Planning Director",
+      l1b1: "Organized the Campus Tennis Freshman Cup.",
+      l1b2: "Led planning for the first Pickleball Tournament.",
+      l1b3: "Managed event coordination, promotion, and operations.",
+      l2Date: "2023 - Present",
+      l2Title: "XJTLU Tennis Team Member",
+      l2b1: "Champion, DKU Invitational Tournament 2024.",
+      l2b2: "Competed in National University Tennis Competitions.",
+      awardsTitle: "Awards",
+      a1Title: "National Encouragement Scholarship",
+      a1Desc: "2025",
+      a2Title: "MCM/ICM Honorable Mention",
+      a2Desc: "Top 15% globally",
+      a3Title: "XJTLU i-Star Five-Star Athlete Award",
+      a3Desc: "2026",
+      a4Title: "DKU Invitational Tournament",
+      a4Desc: "Champion, 2024",
+      a5Title: "Dream-Chasers Competition",
+      a5Desc: "Excellence Award",
+      skillsTitle: "Skills",
+      s1k: "Programming",
+      s1v: "Python, Java, MATLAB",
+      s2k: "AI & Systems",
+      s2v: "Dify, LLM Applications, Docker",
+      s3k: "Data Analysis",
+      s3v: "NumPy, Visualization, Modeling",
+      s4k: "Engineering",
+      s4v: "CAD, NURBS, FEA, IGA",
+      s5k: "Tools",
+      s5v: "Microsoft Office, LaTeX",
+      pubTitle: "Publication",
+      pub1Title: "AI-generated visual feedback as a writing aid",
+      pub1Desc: "Improving visual data description skills in EFL learners. EUROCALL 2025.",
+      contactTitle: "Contact",
+      phoneLabel: "Phone:",
+      footer: "© 2026 Junhong Liao. Designed as a clean academic personal webpage."
+    },
+    zh: {
+      navResearch: "科研经历",
+      navProjects: "项目",
+      navExperience: "实习经历",
+      navAwards: "奖项",
+      navContact: "联系方式",
+      subtitle: "信息与计算科学本科 · 西交利物浦大学",
+      intro: "我是一名本科生，研究兴趣包括 AI 应用、数学建模和智能系统。我的工作涵盖 AI 辅助学习工具、基于等几何分析的 CAD/FEA 集成、预测建模，以及 LLM 应用的实际部署。",
+      photoTitle: "个人头像",
+      photoHint: "请将头像放在 ./assets/avatar.jpg（建议 4:5 竖版）。",
+      researchTitle: "科研经历",
+      r1Date: "2024年11月 - 2025年9月",
+      r1Title: "VividWrite：用于 EFL 写作提升的 AI 生成可视化反馈",
+      r1Role: "EUROCALL 2025 已接收",
+      r1b1: "开发了集成 GPT-4o 与 DePlot 的 AI 写作辅助系统。",
+      r1b2: "使用 Mermaid.js 设计个性化可视化反馈生成方案。",
+      r1b3: "对 50 名 EFL 学生开展前测/后测实验。",
+      r1b4: "显著提升写作准确性、连贯性与词汇多样性。",
+      r2Date: "2024年6月 - 2024年9月",
+      r2Title: "基于等几何分析的 CAD 与 FEA 集成研究",
+      r2Role: "团队负责人 · Research Fellowship 优秀海报奖",
+      r2b1: "开发基于 NURBS 的复杂曲线曲面几何建模方法。",
+      r2b2: "实现 CAD 几何到 IGA 数值分析的直接集成。",
+      r2b3: "对比 IGA 与传统 FEA 的精度及计算效率。",
+      projectsTitle: "代表项目",
+      p1Date: "2025年1月",
+      p1Title: "楼梯磨损动态预测模型",
+      p1Role: "代码开发 · MCM 荣誉提名",
+      p1b1: "使用 MATLAB 与 Python 构建多因素预测模型。",
+      p1b2: "建模环境影响因素与人流变化。",
+      p1b3: "实现方向性磨损建模与动态仿真。",
+      p2Date: "2025年9月 - 2025年10月",
+      p2Title: "体育场座位优化模型",
+      p2Role: "省级三等奖",
+      p2b1: "基于几何约束建立递归 C 值模型。",
+      p2b2: "应用非线性优化与二分搜索。",
+      p2b3: "将最优观赛角提升至约 27°。",
+      p3Date: "2024年9月 - 2024年12月",
+      p3Title: "Aurora BreatheGuard",
+      p3Role: "基于物联网的空气质量监测系统",
+      p3b1: "设计空气质量实时监测的 IoT 系统架构。",
+      p3b2: "实现可视化与智能预警机制。",
+      p3b3: "获 XJTLU Global Dream-Chasers 大赛卓越奖。",
+      expTitle: "实习经历",
+      e1Date: "2025年7月 - 2025年9月",
+      e1Title: "苏州璞旺智能软件有限公司",
+      e1Role: "AI 开发实习生",
+      e1b1: "参与 AI Agent 架构及 Dify、Docker、DeepSeek、Xinference 技术栈实践。",
+      e1b2: "开发前后端一体化 AI 助手系统。",
+      e1b3: "完成端到端部署与交付。",
+      e2Date: "2024年7月 - 2024年9月",
+      e2Title: "成都微维网络科技有限公司",
+      e2Role: "Python 开发实习生",
+      e2b1: "开发体育赛事智能评分系统。",
+      e2b2: "实现实时成绩更新与数据可视化。",
+      e2b3: "采用面向对象与模块化设计方法。",
+      leadTitle: "领导力与活动",
+      l1Date: "2024年 - 2025年",
+      l1Title: "XJTLU 网球俱乐部",
+      l1Role: "策划部部长",
+      l1b1: "组织校园网球新生杯赛事。",
+      l1b2: "策划并落地首届匹克球比赛。",
+      l1b3: "负责活动统筹、宣传与执行。",
+      l2Date: "2023年 - 至今",
+      l2Title: "XJTLU 网球队队员",
+      l2b1: "2024 年 DKU 邀请赛冠军。",
+      l2b2: "参加全国大学生网球赛事。",
+      awardsTitle: "奖项",
+      a1Title: "国家励志奖学金",
+      a1Desc: "2025",
+      a2Title: "MCM/ICM 荣誉提名",
+      a2Desc: "全球前 15%",
+      a3Title: "XJTLU i-Star 五星运动员",
+      a3Desc: "2026",
+      a4Title: "DKU 邀请赛",
+      a4Desc: "冠军，2024",
+      a5Title: "Dream-Chasers 大赛",
+      a5Desc: "卓越奖",
+      skillsTitle: "技能",
+      s1k: "编程语言",
+      s1v: "Python, Java, MATLAB",
+      s2k: "AI 与系统",
+      s2v: "Dify, LLM 应用, Docker",
+      s3k: "数据分析",
+      s3v: "NumPy, 可视化, 建模",
+      s4k: "工程能力",
+      s4v: "CAD, NURBS, FEA, IGA",
+      s5k: "工具",
+      s5v: "Microsoft Office, LaTeX",
+      pubTitle: "论文发表",
+      pub1Title: "AI 生成可视化反馈在写作辅助中的应用",
+      pub1Desc: "提升 EFL 学习者可视化数据描述能力。EUROCALL 2025。",
+      contactTitle: "联系方式",
+      phoneLabel: "电话：",
+      footer: "© 2026 廖俊宏。页面采用简洁学术风格设计。"
+    }
+  };
+
+  let currentLang = "en";
+  const langToggle = document.getElementById("langToggle");
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach((node) => {
+      const key = node.getAttribute("data-i18n");
+      if (translations[lang][key]) {
+        node.textContent = translations[lang][key];
+      }
+    });
+    langToggle.textContent = lang === "en" ? "中文" : "EN";
+  }
+
+  langToggle.addEventListener("click", () => {
+    applyLanguage(currentLang === "en" ? "zh" : "en");
+  });
+</script>
+</body>
+</html>
